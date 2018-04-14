@@ -12,6 +12,11 @@ function onWindowLoad() {
   var message = document.querySelector('#message');
 
   chrome.tabs.executeScript(null, {
+    file: "app.js"
+  }
+  });
+  
+  chrome.tabs.executeScript(null, {
     file: "getPagesSource.js"
   }, function() {
     // If you try and inject into an extensions page or the webstore/NTP you'll get an error
