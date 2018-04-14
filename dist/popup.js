@@ -12,7 +12,7 @@ function onWindowLoad() {
   var message = document.querySelector('#message');
 
   chrome.tabs.executeScript(null, {
-    file: "app.js"
+    file: "dist/app.js"
   }
   });
   
