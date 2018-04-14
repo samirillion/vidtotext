@@ -1,15 +1,15 @@
 {
 	"manifest_version": 2,
-	"name": "Vid Kid",
+	"name": "Vid To Text",
 	"description": "Converts any text in a paused video into copy-pasteable text.",
 	"version": "1.0",
 
 	"browser_action": {
-		"default_icon": "icon.png",
+		"default_icon": "assets/icon.png",
 		"default_popup": "popup.html"
 	},
 
-	"options_page" : "options.html",
+	// "options_page" : "options.html",
 
 	"background" : {
 		"scripts" : ["eventPage.js"],
