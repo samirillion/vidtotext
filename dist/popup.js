@@ -2,22 +2,14 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
   if (request.action == "getSource") {
     message.innerText = request.source;
   }
-  // if (request.action == "getVidEl") {
-
-  // }
 });
 
 function onWindowLoad() {
 
   var message = document.querySelector('#message');
-
-  chrome.tabs.executeScript(null, {
-    file: "dist/app.js"
-  }
-  });
   
   chrome.tabs.executeScript(null, {
-    file: "getPagesSource.js"
+    file: "app.js"
   }, function() {
     // If you try and inject into an extensions page or the webstore/NTP you'll get an error
     if (chrome.runtime.lastError) {
