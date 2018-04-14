@@ -2,6 +2,7 @@
 paused videos get OCR'd into text
 
 ## First Steps
+- [Pull html](https://stackoverflow.com/questions/11684454/getting-the-source-html-of-the-current-page-from-chrome-extension)
 - Find relevant video element
 - If is paused, turn element into image
 - Apply OCR to image
