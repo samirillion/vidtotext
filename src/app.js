@@ -1,5 +1,26 @@
 // @author Rob W <http://stackoverflow.com/users/938089/rob-w>
 // Demo: var serialized_html = DOMtoString(document);
+import {Observable} from "rxjs";
+
+let numbers = [1, 5, 10];
+let source = Observable.from(numbers);
+
+class MyObserver {
+
+  next(value) {
+    console.log(`value: ${value}`);
+  }
+
+  error(e) {
+  	console.log(`error: ${e}`);
+  }
+
+  complete() {
+  	console.log('complete');
+  }
+
+}
+
 
 function DOMtoString(document_root) {
     var html = '',
@@ -31,5 +52,5 @@ function DOMtoString(document_root) {
 
 chrome.runtime.sendMessage({
     action: "getSource",
-    source: DOMtoString(document)
+    source: source.subscribe(new MyObserver)
 });

@@ -1,8 +1,11 @@
 const path = require('path');
 
 module.exports = {
-	entry: "./src/main",
-	output: { filename: "app.js" },
+	entry: {
+		app: "./src/app",
+		popup: "./src/popup"
+	},
+	output: { filename: "[name].js" },
 	module: {
 		rules: [
 			{
