@@ -1,20 +1,22 @@
-import {Observable} from "rxjs";
+import { fromEvent } from 'rxjs/observable/fromEvent';
+import { map } from 'rxjs/operators';
+import { mouseTracker } from './mousetracker.js';
 
 // This Will be How the text is passed back to popujs where it will be copied to user clipboard
 chrome.runtime.sendMessage({
-    action: "getSource",
-    source: 'this is text that you got from turning an image into text'
+    action: "getText",
+    source: "this is where text that you get from converting the image goes"
 });
 
-let mousetracker = document.createElement("div");
-	mousetracker.id = "mouseTracker";
-	document.body.appendChild(mousetracker);
+const source = fromEvent(document, 'mouseover');
+const mouseup = fromEvent(document, 'mouseup');
+const mousemove = fromEvent(document, 'mousemove');
+const mousedown = fromEvent(document, 'mousedown');
 
-function mouseTracker(document, value) {
-	mousetracker.innerText = value.clientX + ", " + value.clientY;
+function dragSquare(document, value) {
+
 }
 
-let source = Observable.fromEvent(document, 'mouseover');
 
 source.subscribe(
 	// next() function
@@ -24,10 +26,6 @@ source.subscribe(
 	// complete function
 	() => mouseTracker(document, 'complete')
 );
-
-// let mousedown$ = Observable.fromEvent(document, 'mousedown');
-// let mousemove$ = Observable.fromEvent(document, "mousemove");
-// let mouseup$ = Observable.fromEvent(document, "mouseup");
 
 // let mousedrag$ = mousedown$.switchMap(down => {
 // 			down.preventDefault();

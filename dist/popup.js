@@ -79,7 +79,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nchrome.runtime.onMessage.addListener(function (request, sender) {\n  if (request.action == \"getSource\") {\n    message.innerText = request.source;\n  }\n});\n\nfunction onWindowLoad() {\n\n  chrome.tabs.insertCSS(null, { file: \"style.css\" });\n\n  document.getElementById('selectarea').addEventListener('click', function () {\n    chrome.tabs.executeScript(null, {\n      file: \"app.js\"\n    }, function () {\n      // If you try and inject into an extensions page or the webstore/NTP you'll get an error\n      if (chrome.runtime.lastError) {\n        document.innerText = 'There was an error injecting script : \\n' + chrome.runtime.lastError.message;\n      }\n    });\n\n    window.close();\n  });\n}\n\nwindow.onload = onWindowLoad;\n\n//# sourceURL=webpack:///./src/popup.js?");
+eval("\n\nchrome.runtime.onMessage.addListener(function (request, sender) {\n  if (request.action == \"getText\") {\n    textoutput.innerText = request.source;\n  }\n});\n\nfunction onWindowLoad() {\n\n  chrome.tabs.insertCSS(null, { file: \"style.css\" });\n\n  document.getElementById('selectarea').addEventListener('click', function () {\n    chrome.tabs.executeScript(null, {\n      file: \"app.js\"\n    }, function () {\n      // If you try and inject into an extensions page or the webstore/NTP you'll get an error\n      if (chrome.runtime.lastError) {\n        document.innerText = 'There was an error injecting script : \\n' + chrome.runtime.lastError.message;\n      }\n    });\n\n    window.close();\n  });\n}\n\nwindow.onload = onWindowLoad;\n\n//# sourceURL=webpack:///./src/popup.js?");
 
 /***/ })
 

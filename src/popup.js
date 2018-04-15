@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(function(request, sender) {
-  if (request.action == "getSource") {
-    message.innerText = request.source;
+  if (request.action == "getText") {
+    textoutput.innerText = request.source;
   }
 });
 
