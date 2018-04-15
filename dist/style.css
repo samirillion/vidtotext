@@ -1,0 +1,17 @@
+body {
+	/*background: blue;*/
+}
+
+p {
+	/*font-size: 30px !important;*/
+}
+#mouseTracker {
+	height: auto;
+	width: 100px;
+	position: absolute;
+	right: 10vw;
+	bottom: 10vh;
+	border: 4px solid black;
+	background: white;
+	padding: 3px;
+}

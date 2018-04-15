@@ -1,56 +1,60 @@
-// @author Rob W <http://stackoverflow.com/users/938089/rob-w>
-// Demo: var serialized_html = DOMtoString(document);
 import {Observable} from "rxjs";
 
-let numbers = [1, 5, 10];
-let source = Observable.from(numbers);
+let mousetracker = document.createElement("div");
+	mousetracker.id = "mouseTracker";
+	document.body.appendChild(mousetracker);
 
-class MyObserver {
-
-  next(value) {
-    console.log(`value: ${value}`);
-  }
-
-  error(e) {
-  	console.log(`error: ${e}`);
-  }
-
-  complete() {
-  	console.log('complete');
-  }
-
+function mouseTracker(document, value) {
+	mousetracker.innerText = value.clientX + ", " + value.clientY;
 }
 
+let source = Observable.fromEvent(document, 'mouseover');
 
-function DOMtoString(document_root) {
-    var html = '',
-        node = document_root.firstChild;
-    while (node) {
-        switch (node.nodeType) {
-        case Node.ELEMENT_NODE:
-            console.log(node.outerHTML);
-            html += node.outerHTML;
-            break;
-        case Node.TEXT_NODE:
-            html += node.nodeValue;
-            break;
-        case Node.CDATA_SECTION_NODE:
-            html += '<![CDATA[' + node.nodeValue + ']]>';
-            break;
-        case Node.COMMENT_NODE:
-            html += '<!--' + node.nodeValue + '-->';
-            break;
-        case Node.DOCUMENT_TYPE_NODE:
-            // (X)HTML documents are identified by public identifiers
-            html += "<!DOCTYPE " + node.name + (node.publicId ? ' PUBLIC "' + node.publicId + '"' : '') + (!node.publicId && node.systemId ? ' SYSTEM' : '') + (node.systemId ? ' "' + node.systemId + '"' : '') + '>\n';
-            break;
-        }
-        node = node.nextSibling;
-    }
-    return html;
-}
+source.subscribe(
+	// next() function
+	value => mouseTracker(document, value),
+	// error function
+	e => mouseTracker(document, error),
+	// complete function
+	() => mouseTracker(document, 'complete')
+);
 
 chrome.runtime.sendMessage({
     action: "getSource",
-    source: source.subscribe(new MyObserver)
+    source: 'cool'
 });
+
+// let mousedown$ = Observable.fromEvent(document, 'mousedown');
+// let mousemove$ = Observable.fromEvent(document, "mousemove");
+// let mouseup$ = Observable.fromEvent(document, "mouseup");
+
+// let mousedrag$ = mousedown$.switchMap(down => {
+// 			down.preventDefault();
+//             let prevX = down.clientX;
+//             let prevY = down.clientY;
+
+//             return mousemove$
+//                 .map(move => {
+//                     move.preventDefault();
+
+//                     let delta = {
+//                         dx: event.clientX - prevX,
+//                         dy: event.clientY - prevY
+//                     };
+//                     prevX = event.clientX;
+//                     prevY = event.clientY;
+
+//                     return delta;
+//                 })
+//                 .takeUntil(mouseup$);
+//         })
+
+//         mousedrag$.subscribe(
+//             this.moveX(delta.dx);
+//             this.moveY(delta.dy);
+//         });
+
+// function onNext(value) {
+// 	mousetracker.style.left = value.x;
+// 	mousetracker.style.top = value.y;
+// }

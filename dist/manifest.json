@@ -9,6 +9,10 @@
 		"default_popup": "popup.html"
 	},
 
+	"web_accessible_resources": [
+		"style.css"
+	],
+
 	// "options_page" : "options.html",
 
 	// "background" : {
