@@ -1,5 +1,11 @@
 import {Observable} from "rxjs";
 
+// This Will be How the text is passed back to popujs where it will be copied to user clipboard
+chrome.runtime.sendMessage({
+    action: "getSource",
+    source: 'this is text that you got from turning an image into text'
+});
+
 let mousetracker = document.createElement("div");
 	mousetracker.id = "mouseTracker";
 	document.body.appendChild(mousetracker);
@@ -18,11 +24,6 @@ source.subscribe(
 	// complete function
 	() => mouseTracker(document, 'complete')
 );
-
-chrome.runtime.sendMessage({
-    action: "getSource",
-    source: 'cool'
-});
 
 // let mousedown$ = Observable.fromEvent(document, 'mousedown');
 // let mousemove$ = Observable.fromEvent(document, "mousemove");
