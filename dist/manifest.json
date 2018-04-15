@@ -16,6 +16,9 @@
 	// 	"persistent" : false
 	// },
 
+	// just to get things working in dev mode, probably should remove for prod
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+
 	"permissions" : [
 		"storage",
 		"notifications",

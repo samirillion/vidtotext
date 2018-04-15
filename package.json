@@ -5,7 +5,8 @@
   "main": "popup.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/webpack --env.production"
+    "build": "./node_modules/.bin/webpack --mode=production",
+    "watch": "./node_modules/.bin/webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
